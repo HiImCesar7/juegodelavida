@@ -14,12 +14,16 @@ typedef signed long sint32;
 //medidas del tablero
 #define alto (30U) //alto del tablero
 #define ancho (30U) //ancho del tablero 
+
 //condiciones de celulas
 #define celula_viva (1U) //celula viva
 #define celula_muerta (0U) //celula muerta
 #define sobrevive_min (2U) //valor minimo de vecinos para que sobreviva la celula
 #define sobrevive_max (3U) //valor maximo de vecinos para que sobreviva la celula
-#define reproduccion (3U) //valor necesario para que una celular muerta reviva
+#define reproduccion (3U) //valor necesario para que una celula muerta reviva
+
+//modelos de prueba
+#define modelo_prueba (3U) //cambiar valor de la macro para probar diferentes algoritmos
 
 //prototipos de funcion
 void imprimir_vtablero(uint8 tablero[alto][ancho]);
@@ -31,9 +35,38 @@ int main() {
     uint8 u8tablero_actual[alto][ancho] = {0};
     uint8 u8tablero_siguiente[alto][ancho] = {0};
 
-    u8tablero_actual[10][9] = (uint8)celula_viva;
-    u8tablero_actual[10][10] = (uint8)celula_viva;
-    u8tablero_actual[10][11] = (uint8)celula_viva;
+    switch (modelo_prueba)
+    {
+    case 1:
+            //glider
+             u8tablero_actual[1][2] = (uint8)celula_viva;
+             u8tablero_actual[2][3] = (uint8)celula_viva; 
+             u8tablero_actual[3][1] = (uint8)celula_viva;
+             u8tablero_actual[3][2] = (uint8)celula_viva;
+             u8tablero_actual[3][3] = (uint8)celula_viva;
+        break;
+    case 2:
+            //oscilador
+             u8tablero_actual[10][9] = (uint8)celula_viva;
+             u8tablero_actual[10][10] = (uint8)celula_viva;
+             u8tablero_actual[10][11] = (uint8)celula_viva;
+
+        break;
+    case 3:
+            //nave espacial
+             u8tablero_actual[1][2] = (uint8)celula_viva;
+             u8tablero_actual[1][5] = (uint8)celula_viva;
+             u8tablero_actual[2][1] = (uint8)celula_viva;
+             u8tablero_actual[2][5] = (uint8)celula_viva;
+             u8tablero_actual[3][5] = (uint8)celula_viva;
+             u8tablero_actual[3][1] = (uint8)celula_viva;
+             u8tablero_actual[4][3] = (uint8)celula_viva;
+             u8tablero_actual[4][4] = (uint8)celula_viva;
+             u8tablero_actual[4][5] = (uint8)celula_viva;
+    default:
+            //Do nothing
+        break;
+    }
 
     while(1)
     {
