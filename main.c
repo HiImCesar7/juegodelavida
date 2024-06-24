@@ -23,7 +23,7 @@ typedef signed long sint32;
 #define reproduccion (3U) //valor necesario para que una celula muerta reviva
 
 //modelos de prueba
-#define modelo_prueba (3U) //cambiar valor de la macro para probar diferentes algoritmos
+#define modelo_prueba (4U) //cambiar valor de la macro para probar diferentes algoritmos
 
 //prototipos de funcion
 void imprimir_vtablero(uint8 tablero[alto][ancho]);
@@ -63,6 +63,14 @@ int main() {
              u8tablero_actual[4][3] = (uint8)celula_viva;
              u8tablero_actual[4][4] = (uint8)celula_viva;
              u8tablero_actual[4][5] = (uint8)celula_viva;
+        break;
+    case 4:
+            //inicializacion aleatoria de todas las celdas
+            for (uint8 u8i = 0; u8i < (uint8)alto; u8i++) {
+                for (uint8 u8j = 0; u8j < (uint8)ancho; u8j++) {
+                u8tablero_actual[u8i][u8j] = rand() % 2; 
+                }
+            }
     default:
             //Do nothing
         break;
